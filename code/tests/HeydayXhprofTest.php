@@ -5,16 +5,13 @@ class HeydayXhprofTest extends SapphireTest
 
     public function testAppName()
     {
-
         HeydayXhprof::setAppName('Something');
 
         $this->assertEquals('Something', HeydayXhprof::getAppName());
-
     }
 
     public function testStartEnd()
     {
-
         HeydayXhprof::start('Start');
 
         $this->assertEquals('Start', HeydayXhprof::getAppName());
@@ -45,12 +42,10 @@ class HeydayXhprofTest extends SapphireTest
         $apps = DataObject::get('HeydayXhprofApp');
 
         $this->assertEquals(count($apps), 2);
-
     }
 
     public function testProbability()
     {
-
         HeydayXhprof::setProbability(1 / 10);
 
         $this->assertEquals(1 / 10, HeydayXhprof::getProbability());
@@ -73,22 +68,16 @@ class HeydayXhprofTest extends SapphireTest
 
         function run()
         {
-
             $sum = 0;
             $tot = 100000;
 
             for ($i = 0; $i < $tot; $i++) {
-
                 if (HeydayXhprof::testProbability()) {
-
                     $sum++;
-
                 }
-
             }
 
             return round($sum / $tot, 1);
-
         }
 
         HeydayXhprof::setProbability(1 / 10);
@@ -114,12 +103,10 @@ class HeydayXhprofTest extends SapphireTest
         HeydayXhprof::setProbability(2 / 3);
 
         $this->assertEquals(run(), round(HeydayXhprof::getProbability(), 1));
-
     }
 
     public function testExclusions()
     {
-
         $exclusions = array(
             'hello'
         );
@@ -163,7 +150,5 @@ class HeydayXhprofTest extends SapphireTest
 
         $this->assertTrue(HeydayXhprof::isAllowed('barbie'));
         $this->assertFalse(HeydayXhprof::isAllowed('/bob/'));
-
     }
-
 }

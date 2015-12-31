@@ -202,7 +202,6 @@ class HeydayXhprof
     public static function isAllowed($url)
     {
         return !self::isExcluded($url) && self::testProbability();
-
     }
 
     /**
@@ -216,13 +215,9 @@ class HeydayXhprof
      */
     public static function start($app_name = false, $flags = false)
     {
-
         if (extension_loaded('xhprof')) {
-
             if (self::$started) {
-
                 user_error('You have already started xhprof');
-
             }
 
             xhprof_enable($flags !== false ? $flags : self::getDefaultFlags());
@@ -232,17 +227,11 @@ class HeydayXhprof
             self::$started = true;
 
             if ($app_name) {
-
                 self::setAppName($app_name);
-
             }
-
         } else {
-
             user_error('Xhprof extension not loaded');
-
         }
-
     }
 
     /**
@@ -252,9 +241,7 @@ class HeydayXhprof
      */
     public static function end()
     {
-
         if (extension_loaded('xhprof') && self::isStarted()) {
-
             self::$started = false;
 
             $xhprof_runs = new XHProfRuns_Default();
@@ -283,13 +270,9 @@ JSCRIPT
                     echo self::getLink($run_id);
                     break;
             }
-
         } else {
-
             user_error('Xhprof extension not loaded');
-
         }
-
     }
 
     public static function getLink($run_id)
@@ -316,15 +299,11 @@ JSCRIPT
      */
     public static function getDefaultFlags()
     {
-
         if (self::$default_flags === false) {
-
             self::$default_flags = XHPROF_FLAGS_CPU + XHPROF_FLAGS_MEMORY;
-
         }
 
         return self::$default_flags;
-
     }
 
     /**
@@ -336,9 +315,7 @@ JSCRIPT
      */
     public static function setDefaultFlags($flags)
     {
-
         self::$default_flags = $flags;
-
     }
 
     /**
@@ -348,17 +325,13 @@ JSCRIPT
      */
     public static function getAppName()
     {
-
         if (self::$app_name == false) {
-
             global $project;
 
             self::$app_name = $project;
-
         }
 
         return self::$app_name;
-
     }
 
     /**
@@ -382,5 +355,4 @@ JSCRIPT
     {
         return self::$started;
     }
-
 }

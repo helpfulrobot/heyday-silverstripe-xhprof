@@ -52,7 +52,6 @@ class HeydayXhprofController extends Controller
      */
     public function index()
     {
-
         echo implode(
             PHP_EOL,
             array(
@@ -63,7 +62,6 @@ class HeydayXhprofController extends Controller
         ), PHP_EOL;
 
         exit;
-
     }
 
     /**
@@ -86,7 +84,6 @@ class HeydayXhprofController extends Controller
         } else {
             return "It appears that global profiling is already enabled as a backup file exists." . PHP_EOL;
         }
-
     }
 
     public function disable()
@@ -111,14 +108,11 @@ class HeydayXhprofController extends Controller
      */
     public function globalIncludes()
     {
-
         $dir = realpath(__DIR__ . '/GlobalProfile');
 
         return <<<HTACCESS
 php_value auto_prepend_file $dir/Start.php
 
 HTACCESS;
-
     }
-
 }
